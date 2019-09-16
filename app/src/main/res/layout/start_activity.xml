@@ -10,31 +10,40 @@
 
     <TextView
         android:layout_width="98dp"
-
         android:layout_height="wrap_content"
         android:text="@string/start_game_score"
         android:textAlignment="center"
         android:textColor="@color/blackColor"
         android:textSize="20sp"></TextView>
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="0"
+        android:textColor="@color/blackColor"
+        android:textSize="30dp"
+        >
+
+    </TextView>
 
     <TextView
-        android:layout_width="208dp"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/blackColor"
         android:text="@string/start_game_title"
         android:textAlignment="center"
+        android:textColor="@color/blackColor"
         android:textSize="30sp">
 
     </TextView>
 
     <TextView
+        android:id="@+id/question"
         android:layout_width="173dp"
         android:layout_height="47dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:text="10 +10 = "
         android:textAlignment="center"
         android:textColor="@color/blackColor"
         android:textSize="30sp"
@@ -47,12 +56,10 @@
         android:layout_width="150dp"
         android:layout_height="62dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="20"
+        android:layout_marginTop="10dp"
         android:textColor="@color/blackColor"
         android:textAlignment="center"
         android:textSize="40sp"
-
         ></TextView>
 
     <RelativeLayout
@@ -146,7 +153,7 @@
             android:layout_marginEnd="67dp"
             android:background="@color/whiteColor"
             android:text="@string/statt_game_confirm"
-            android:textSize="30dp" />
+            android:textSize="25dp" />
 
         <Button
             android:id="@+id/button0"
@@ -175,7 +182,6 @@
         <Button
             android:id="@+id/button8"
             android:background="@color/whiteColor"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="23dp"
