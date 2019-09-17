@@ -5,16 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 
 public class StartAcitivty  extends AppCompatActivity implements View.OnClickListener{
@@ -25,10 +23,9 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     String [] questions;
     String [] answers;
     List<String> question_arraylist, answer_arraylist;
-    public int numberOfQuestions;
+    public int number_of_maximum_questions_selected;
     TextView score, question;
     int Question_ID;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +37,19 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         answer_arraylist = new ArrayList<>(Arrays.asList(answers));
 
         Intent intent = getIntent();
-        numberOfQuestions = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
-        System.out.println("ttt" + numberOfQuestions);
-        Question_ID = get_next_question(numberOfQuestions);
+        number_of_maximum_questions_selected = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
+        System.out.println("ttt" + number_of_maximum_questions_selected);
         question = findViewById(R.id.question);
-        question.setText(question_arraylist.get(Question_ID));
+        new_question();
+        find_all_views_by_id_and_set_on_click_listener();
 
+        //Sett inn foreach løkke?
+        //amountOfQuestions(number_of_maximum_questions_selected, arraylist);
+
+    }
+
+    protected  void find_all_views_by_id_and_set_on_click_listener(){
+        Button confirmBtn = findViewById(R.id.confirm);
         Button btn0 = findViewById(R.id.button0);
         Button btn1 = findViewById(R.id.button1);
         Button btn2 = findViewById(R.id.button2);
@@ -57,10 +61,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         Button btn8 = findViewById(R.id.button8);
         Button btn9 = findViewById(R.id.button9);
         Button btnC = findViewById(R.id.buttonC);
-
-        Button confirmBtn = findViewById(R.id.confirm);
-
-        //Sett inn foreach løkke?
         btn0.setOnClickListener(this);
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
@@ -73,8 +73,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         btn9.setOnClickListener(this);
         btnC.setOnClickListener(this);
         confirmBtn.setOnClickListener(this);
-        //amountOfQuestions(numberOfQuestions, arraylist);
-
     }
 
     public void pointGain(){
@@ -88,7 +86,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
 
 
 
-    public void answer(String button){
+    public void append_answer(String button){
         TextView answerView = findViewById(R.id.answer);
         if(button.equals("clear_answer")){
             answerSelected="";
@@ -123,25 +121,42 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         }*/
     }
 
-    public int get_next_question(int number_of_questions){
-        Random random_number_generator = new Random();
-        return random_number_generator.nextInt(number_of_questions);
+    public int generate_new_question_ID(int number_of_questions){
+            Random random_number_generator = new Random();
+            return random_number_generator.nextInt(number_of_questions);
     }
 
-    public void confirmBtnActive(){
-        System.out.println(answerSelected + " og " + Question_ID + " og " + question_arraylist.get(Question_ID) + " og " + answer_arraylist.get(Question_ID));
-        if(answerSelected.equals("")){
-            answer(answerSelected);
-        }
-        else {
-            if(answerSelected.equals(answer_arraylist.get(Question_ID))){
-                pointGain();
-                //question.setText(question_arraylist.get(Question_ID));
-            }
-            answerSelected="";
-            answer(answerSelected);
-        }
-        Question_ID = get_next_question(numberOfQuestions);
+    public void confirm_answer(){
+        /*if(answerSelected.equals("")){
+            append_answer(answerSelected);
+        }*/
+        if(correct_answer())
+            pointGain();
+        append_answer("clear_answer");
+        if (number_of_maximum_questions_selected > 1)
+        next_question();
+        else
+            System.out.println("YOU WIN");
+    }
+
+    public boolean correct_answer(){
+        return answerSelected.equals(answer_arraylist.get(Question_ID));
+    }
+
+    public void next_question(){
+        question_arraylist.remove(Question_ID);
+        answer_arraylist.remove(Question_ID);
+        number_of_maximum_questions_selected--;
+        if (number_of_maximum_questions_selected>1)
+            Question_ID = generate_new_question_ID(number_of_maximum_questions_selected);
+        else
+            Question_ID = 0;
+        System.out.println("QID " + Question_ID + "Maxiumum: " + number_of_maximum_questions_selected);
+        question.setText(question_arraylist.get(Question_ID));
+    }
+
+    public void new_question(){
+        Question_ID = generate_new_question_ID(number_of_maximum_questions_selected);
         question.setText(question_arraylist.get(Question_ID));
     }
 
@@ -149,40 +164,40 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.button0:
-                answer("0");
+                append_answer("0");
                 break;
             case R.id.button1:
-                answer("1");
+                append_answer("1");
                 break;
             case R.id.button2:
-                answer("2");
+                append_answer("2");
                 break;
             case R.id.button3:
-                answer("3");
+                append_answer("3");
                 break;
             case R.id.button4:
-                answer("4");
+                append_answer("4");
                 break;
             case R.id.button5:
-                answer("5");
+                append_answer("5");
                 break;
             case R.id.button6:
-                answer("6");
+                append_answer("6");
                 break;
             case R.id.button7:
-                answer("7");
+                append_answer("7");
                 break;
             case R.id.button8:
-                answer("8");
+                append_answer("8");
                 break;
             case R.id.button9:
-                answer("9");
+                append_answer("9");
                 break;
             case R.id.buttonC:
-                answer("clear_answer");
+                append_answer("clear_answer");
                 break;
             case R.id.confirm:
-               confirmBtnActive();
+               confirm_answer();
                 break;
                 default:
                     System.out.println("Something went horribly wrong");
