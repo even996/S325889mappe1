@@ -52,6 +52,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         Button btn7 = findViewById(R.id.button7);
         Button btn8 = findViewById(R.id.button8);
         Button btn9 = findViewById(R.id.button9);
+        Button btnC = findViewById(R.id.buttonC);
 
         Button confirmBtn = findViewById(R.id.confirm);
         question = findViewById(R.id.question);
@@ -69,6 +70,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         btn7.setOnClickListener(this);
         btn8.setOnClickListener(this);
         btn9.setOnClickListener(this);
+        btnC.setOnClickListener(this);
         confirmBtn.setOnClickListener(this);
         amountOfQuestions(numberOfQuestions, arraylist);
 
@@ -85,7 +87,12 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
 
     public void answer(String button){
         TextView answerView = findViewById(R.id.answer);
-        answerSelected += button;
+        if(button.equals("")){
+            answerSelected="";
+        }
+        else {
+            answerSelected += button;
+        }
         if(answerSelected.length()>3){
             answerSelected="";
         }
@@ -168,6 +175,10 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
             case R.id.button9:
                 answer("9");
                 Toast.makeText(this,"Button 9  clikced", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.buttonC:
+                Toast.makeText(this,"Button C  clikced", Toast.LENGTH_SHORT).show();
+                answer("");
                 break;
             case R.id.confirm:
                confirmBtnActive();
