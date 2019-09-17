@@ -1,5 +1,6 @@
 package com.example.mappe1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,8 +9,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -18,11 +21,26 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
 
     public String answerSelected = "";
     public int points = 0;
+    String [] questions;
+    List<String> arraylist;
+    public int numberOfQuestions;
+    TextView score, question;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
+        questions = getResources().getStringArray(R.array.my_array);
+        List<String> arraylist = new ArrayList<>(Arrays.asList(questions));
+
+        Intent intent = getIntent();
+        numberOfQuestions = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 0);
+        if(numberOfQuestions == 0){
+            numberOfQuestions=5;
+        }
+        System.out.println("" + numberOfQuestions);
+
 
         Button btn0 = findViewById(R.id.button0);
         Button btn1 = findViewById(R.id.button1);
@@ -36,16 +54,11 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         Button btn9 = findViewById(R.id.button9);
 
         Button confirmBtn = findViewById(R.id.confirm);
-        TextView answer = findViewById(R.id.answer);
-        TextView question = findViewById(R.id.question);
-
-
-        String [] questions = getResources().getStringArray(R.array.my_array);
-        List<String> arraylist = Arrays.asList(questions);
+        question = findViewById(R.id.question);
         Collections.shuffle(arraylist);
         question.setText(arraylist.get(0));
 
-
+        //Sett inn foreach løkke
         btn0.setOnClickListener(this);
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
@@ -57,14 +70,16 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         btn8.setOnClickListener(this);
         btn9.setOnClickListener(this);
         confirmBtn.setOnClickListener(this);
+        amountOfQuestions(numberOfQuestions, arraylist);
 
     }
 
     public void pointGain(){
         points++;
-        TextView score = findViewById(R.id.score);
+        score = findViewById(R.id.score);
         score.setText(String.valueOf(points));
     }
+
 
 
 
@@ -75,7 +90,39 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
             answerSelected="";
         }
         answerView.setText(answerSelected);
+    }
 
+
+    public void amountOfQuestions(int questions, List<String> list ){
+        System.out.println(""+list.size());
+        if(questions==5){
+            if (list.size() > 5) {
+                System.out.println(list.toString());
+                list.subList(5, list.size()).clear();
+                System.out.println(list.toString());
+            }
+        }
+        System.out.println(""+list.size());
+        if(questions==10){
+            for (int i = list.size()-1; i>=10 ; i--) {
+                list.remove(i);
+            }
+        }
+    }
+
+    public void confirmBtnActive(){
+
+        if(answerSelected.equals("")){
+            answer(answerSelected);
+        }
+        else {
+            int answer = Integer.parseInt(answerSelected);
+            if(answer==10){
+                pointGain();
+            }
+            answerSelected="";
+            answer(answerSelected);
+        }
     }
 
     @Override
@@ -123,17 +170,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
                 Toast.makeText(this,"Button 9  clikced", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.confirm:
-                if(answerSelected.equals("")){
-                    answer(answerSelected);
-                }
-                else {
-                    int answer = Integer.parseInt(answerSelected);
-                    if(answer==10){
-                        pointGain();
-                    }
-                    answerSelected="";
-                    answer(answerSelected);
-                }
+               confirmBtnActive();
                 break;
                 default:
                     System.out.println("Javel");

@@ -26,10 +26,30 @@
 
 
     <string-array name="my_array">
+        <item>1 + 5 =</item>
+        <item>2 + 5 =</item>
+        <item>3 + 5 =</item>
+        <item>4 + 5 =</item>
         <item>5 + 5 =</item>
+        <item>6 + 5 =</item>
+        <item>7 + 5 =</item>
+        <item>8 + 5 =</item>
+        <item>9 + 5 =</item>
         <item>10 + 5 =</item>
+        <item>11 + 5 =</item>
+        <item>12 + 5 =</item>
+        <item>13 + 5 =</item>
+        <item>14 + 5 =</item>
         <item>15 + 5 =</item>
+        <item>16 + 5 =</item>
+        <item>17 + 5 =</item>
+        <item>18 + 5 =</item>
+        <item>19 + 5 =</item>
         <item>20 + 5 =</item>
+        <item>21 + 5 =</item>
+        <item>22 + 5 =</item>
+        <item>23 + 5 =</item>
+        <item>24 + 5 =</item>
         <item>25 + 5 =</item>
     </string-array>
 

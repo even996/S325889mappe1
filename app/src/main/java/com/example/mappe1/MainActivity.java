@@ -11,12 +11,18 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String EXTRA_NUMBER = "com.example.mappe1";
+    public int checked = 5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        System.out.println((getIntent().hasExtra(EXTRA_NUMBER)+ "test123"));
+        Intent intent = getIntent();
+        checked = intent.getIntExtra(PreferenceAcitivty.EXTRA_NUMBER, 0);
+        System.out.println("" + checked);
         Button startBrn = findViewById(R.id.start_btn);
         Button statisticsBtn = findViewById(R.id.statistics_btn);
         Button preferenceBtn = findViewById(R.id.preference_btn);
@@ -52,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void nextIntent(int i){
-
         switch (i){
             case 1:
                 Intent intent = new Intent(this, StartAcitivty.class);
+                intent.putExtra(EXTRA_NUMBER, checked);
                 startActivity(intent);
                 break;
             case 2:
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 Intent intent3 = new Intent(this, PreferenceAcitivty.class);
                 startActivity(intent3);
-
+                break;
                 default:
                     break;
 

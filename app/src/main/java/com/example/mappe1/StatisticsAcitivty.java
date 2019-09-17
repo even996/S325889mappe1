@@ -13,10 +13,7 @@ public class StatisticsAcitivty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics_activity);
-
         Button prefReturnBtn = findViewById(R.id.returnBtn);
-
-
         prefReturnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,8 +23,6 @@ public class StatisticsAcitivty extends AppCompatActivity {
 
 
     }
-
-
     public void menu(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
