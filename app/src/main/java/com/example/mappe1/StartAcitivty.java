@@ -1,5 +1,8 @@
 package com.example.mappe1;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -95,7 +98,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
             answerSelected += button;
         }
         if(answerSelected.length()>3){
-            answerSelected="";
+            append_answer("clear_answer");
         }
         answerView.setText(answerSelected);
     }
@@ -136,7 +139,32 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         if (number_of_maximum_questions_selected > 1)
         next_question();
         else
-            System.out.println("YOU WIN");
+            createDialog();
+
+    }
+
+    public void createDialog(){
+        System.out.println("NÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅ");
+        AlertDialog.Builder builder = new AlertDialog.Builder(StartAcitivty.this);
+        builder.setCancelable(false);
+        builder.setTitle("You win!");
+        builder.setMessage("You've completed all the questions");
+
+        builder.setPositiveButton("Back to main high scores", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                System.out.println("BYTTER SCENE");
+                toMenu();
+
+            }
+        });
+        builder.show();
+    }
+
+    public void toMenu(){
+        Intent intent = new Intent(this,StatisticsAcitivty.class);
+        intent.putExtra("SCORE", points);
+        startActivity(intent);
     }
 
     public boolean correct_answer(){
