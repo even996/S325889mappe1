@@ -51,14 +51,12 @@ public class PreferenceAcitivty extends AppCompatActivity {
                 menu();
             }
         });
-
         imageButtonNor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 norwergian(view);
             }
         });
-
         imageButtonGer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
