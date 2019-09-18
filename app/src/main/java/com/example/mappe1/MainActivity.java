@@ -19,6 +19,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        System.out.println("TEST!");
+
+
         System.out.println((getIntent().hasExtra(EXTRA_NUMBER)+ "test123"));
         Intent intent = getIntent();
         checked = intent.getIntExtra(PreferenceAcitivty.EXTRA_NUMBER, 5);
