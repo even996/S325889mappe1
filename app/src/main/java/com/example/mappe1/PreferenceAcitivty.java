@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
@@ -23,6 +25,9 @@ public class PreferenceAcitivty extends AppCompatActivity {
     public Button prefReturnBtn;
     public ImageButton imageButtonNor, imageButtonGer;
     public CheckBox checkBox1, checkBox2, checkBox3;
+    public int languageNumber;
+
+
 
 
 
@@ -39,9 +44,14 @@ public class PreferenceAcitivty extends AppCompatActivity {
         checkBox1.setChecked(true);
         buttonsPressed();
 
-
-
     }
+
+
+
+
+
+
+
 
     public void buttonsPressed(){
 
@@ -54,12 +64,14 @@ public class PreferenceAcitivty extends AppCompatActivity {
         imageButtonNor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                languageNumber= 1 ;
                 norwergian(view);
             }
         });
         imageButtonGer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                languageNumber=2;
                 german(view);
             }
         });
@@ -94,7 +106,6 @@ public class PreferenceAcitivty extends AppCompatActivity {
             }
         });
     }
-
 
     public void menu(){
         Intent intent = new Intent(this, MainActivity.class);

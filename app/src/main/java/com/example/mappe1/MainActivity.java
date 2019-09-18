@@ -1,5 +1,6 @@
 package com.example.mappe1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
@@ -14,10 +15,15 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_NUMBER = "com.example.mappe1";
     public int checked;
 
+    TextView menuTitle;
+    Button startBtn, statisticsBtn, preferenceBtn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        menuTitle = findViewById(R.id.menu_title);
 
 
         System.out.println("TEST!");
@@ -27,13 +33,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         checked = intent.getIntExtra(PreferenceAcitivty.EXTRA_NUMBER, 5);
         System.out.println("teeeest" + checked);
-        Button startBrn = findViewById(R.id.start_btn);
-        Button statisticsBtn = findViewById(R.id.statistics_btn);
-        Button preferenceBtn = findViewById(R.id.preference_btn);
+        startBtn = findViewById(R.id.start_btn);
+        statisticsBtn = findViewById(R.id.statistics_btn);
+        preferenceBtn = findViewById(R.id.preference_btn);
         System.out.println("ta veksk");
 
 
-        startBrn.setOnClickListener(new View.OnClickListener() {
+
+
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Intent intent = new Intent(this, StartAcitivty.class);
@@ -55,10 +64,25 @@ public class MainActivity extends AppCompatActivity {
                 nextIntent(3);
             }
         });
+
+        if(savedInstanceState != null){
+            menuTitle.setText(savedInstanceState.getString("menuTitle"));
+            startBtn.setText(savedInstanceState.getString("startBtn"));
+            statisticsBtn.setText(savedInstanceState.getString("staticsBtn"));
+            preferenceBtn.setText(savedInstanceState.getString("preferenceBtn"));
+        }
+
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("menuTitle", menuTitle.getText().toString());
+        outState.putString("startBtn", startBtn.getText().toString());
+        outState.putString("staticsBtn", statisticsBtn.getText().toString());
+        outState.putString("preferenceBtn", preferenceBtn.getText().toString());
 
-
+    }
 
     public void nextIntent(int i){
         switch (i){

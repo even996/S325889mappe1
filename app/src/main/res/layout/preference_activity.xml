@@ -7,6 +7,7 @@
     >
 
     <TextView
+        android:id="@+id/preference_title"
         android:layout_width="170dp"
         android:textColor="@color/blackColor"
         android:layout_marginTop="40dp"

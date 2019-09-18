@@ -27,7 +27,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     String [] answers;
     List<String> question_arraylist, answer_arraylist;
     public int number_of_maximum_questions_selected;
-    TextView score, question;
+    TextView score, question, start_title;
     int Question_ID;
 
     @Override
@@ -38,13 +38,39 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         answers = getResources().getStringArray(R.array.answers);
         question_arraylist = new ArrayList<>(Arrays.asList(questions));
         answer_arraylist = new ArrayList<>(Arrays.asList(answers));
+        start_title = findViewById(R.id.start_game_title);
+
 
         Intent intent = getIntent();
         number_of_maximum_questions_selected = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
         question = findViewById(R.id.question);
         new_question();
         find_all_views_by_id_and_set_on_click_listener();
+
+
+        if(savedInstanceState != null) {
+            points = savedInstanceState.getInt("currentScore");
+            score = findViewById(R.id.score);
+            score.setText(String.valueOf(points));
+            TextView pointTextView = findViewById(R.id.Points);
+            pointTextView.setText(getString(R.string.current_points) + points);
+            String text = savedInstanceState.getString("language");
+            start_title.setText(text);
+            Question_ID = savedInstanceState.getInt("currentQuestion");
+            number_of_maximum_questions_selected = savedInstanceState.getInt("numberOfQuestions");
+            question.setText(question_arraylist.get(Question_ID));
+        }
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("currentScore", points);
+        outState.putString("language", start_title.getText().toString());
+        outState.putInt("currentQuestion", Question_ID);
+        outState.putInt("numberOfQuestions", number_of_maximum_questions_selected);
+    }
+
 
     protected  void find_all_views_by_id_and_set_on_click_listener(){
         //Button confirmBtn = findViewById(R.id.confirm);
