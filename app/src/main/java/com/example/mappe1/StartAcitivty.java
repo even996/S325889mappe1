@@ -25,7 +25,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     public int points = 0;
     String [] questions;
     String [] answers;
-    List<String> question_arraylist, answer_arraylist;
+    ArrayList <String> question_arraylist, answer_arraylist;
     public int number_of_maximum_questions_selected;
     TextView score, question, start_title;
     int Question_ID;
@@ -58,6 +58,8 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
             start_title.setText(text);
             Question_ID = savedInstanceState.getInt("currentQuestion");
             number_of_maximum_questions_selected = savedInstanceState.getInt("numberOfQuestions");
+            question_arraylist=savedInstanceState.getStringArrayList("questionArraylist");
+            answer_arraylist=savedInstanceState.getStringArrayList("answerArraylist");
             question.setText(question_arraylist.get(Question_ID));
         }
     }
@@ -69,6 +71,12 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         outState.putString("language", start_title.getText().toString());
         outState.putInt("currentQuestion", Question_ID);
         outState.putInt("numberOfQuestions", number_of_maximum_questions_selected);
+        outState.putStringArrayList("questionArraylist",question_arraylist);
+        System.out.println(question_arraylist);
+        outState.putStringArrayList("answerArraylist", answer_arraylist);
+        System.out.println("======================================0");
+        System.out.println(answer_arraylist);
+
     }
 
 
