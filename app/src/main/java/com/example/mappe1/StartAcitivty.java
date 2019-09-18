@@ -43,34 +43,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         number_of_maximum_questions_selected = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
         question = findViewById(R.id.question);
         new_question();
-        find_all_views_by_id_and_set_on_click_listener();
-    }
-
-    protected  void find_all_views_by_id_and_set_on_click_listener(){
-        //Button confirmBtn = findViewById(R.id.confirm);
-        //Button btn0 = findViewById(R.id.button0);
-        //Button btn1 = findViewById(R.id.button1);
-        //Button btn2 = findViewById(R.id.button2);
-        //Button btn3 = findViewById(R.id.button3);
-        //Button btn4 = findViewById(R.id.button4);
-        //Button btn5 = findViewById(R.id.button5);
-        //Button btn6 = findViewById(R.id.button6);
-        //Button btn7 = findViewById(R.id.button7);
-        //Button btn8 = findViewById(R.id.button8);
-        //Button btn9 = findViewById(R.id.button9);
-        //Button btnC = findViewById(R.id.buttonC);
-        //btn0.setOnClickListener(this);
-        //btn1.setOnClickListener(this);
-        //btn2.setOnClickListener(this);
-        //btn3.setOnClickListener(this);
-        //btn4.setOnClickListener(this);
-        //btn5.setOnClickListener(this);
-        //btn6.setOnClickListener(this);
-        //btn7.setOnClickListener(this);
-        //btn8.setOnClickListener(this);
-        //btn9.setOnClickListener(this);
-        //btnC.setOnClickListener(this);
-        //confirmBtn.setOnClickListener(this);
     }
 
     public void pointGain(){
@@ -101,21 +73,16 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     }
 
     public void confirm_answer(){
-        /*if(answerSelected.equals("")){
-            append_answer(answerSelected);
-        }*/
         if(correct_answer())
             pointGain();
         append_answer("clear_answer");
         if (number_of_maximum_questions_selected > 1)
-        next_question();
+            next_question();
         else
             createDialog();
-
     }
 
     public void createDialog(){
-        System.out.println("NÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅ");
         AlertDialog.Builder builder = new AlertDialog.Builder(StartAcitivty.this);
         builder.setCancelable(false);
         builder.setTitle("You win!");
@@ -200,27 +167,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
                 default:
                     System.out.println("Something went horribly wrong");
                     break;
-
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
