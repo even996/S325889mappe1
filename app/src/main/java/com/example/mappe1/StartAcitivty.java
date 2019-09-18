@@ -41,41 +41,36 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
 
         Intent intent = getIntent();
         number_of_maximum_questions_selected = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
-        System.out.println("ttt" + number_of_maximum_questions_selected);
         question = findViewById(R.id.question);
         new_question();
         find_all_views_by_id_and_set_on_click_listener();
-
-        //Sett inn foreach løkke?
-        //amountOfQuestions(number_of_maximum_questions_selected, arraylist);
-
     }
 
     protected  void find_all_views_by_id_and_set_on_click_listener(){
-        Button confirmBtn = findViewById(R.id.confirm);
-        Button btn0 = findViewById(R.id.button0);
-        Button btn1 = findViewById(R.id.button1);
-        Button btn2 = findViewById(R.id.button2);
-        Button btn3 = findViewById(R.id.button3);
-        Button btn4 = findViewById(R.id.button4);
-        Button btn5 = findViewById(R.id.button5);
-        Button btn6 = findViewById(R.id.button6);
-        Button btn7 = findViewById(R.id.button7);
-        Button btn8 = findViewById(R.id.button8);
-        Button btn9 = findViewById(R.id.button9);
-        Button btnC = findViewById(R.id.buttonC);
-        btn0.setOnClickListener(this);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
-        btn5.setOnClickListener(this);
-        btn6.setOnClickListener(this);
-        btn7.setOnClickListener(this);
-        btn8.setOnClickListener(this);
-        btn9.setOnClickListener(this);
-        btnC.setOnClickListener(this);
-        confirmBtn.setOnClickListener(this);
+        //Button confirmBtn = findViewById(R.id.confirm);
+        //Button btn0 = findViewById(R.id.button0);
+        //Button btn1 = findViewById(R.id.button1);
+        //Button btn2 = findViewById(R.id.button2);
+        //Button btn3 = findViewById(R.id.button3);
+        //Button btn4 = findViewById(R.id.button4);
+        //Button btn5 = findViewById(R.id.button5);
+        //Button btn6 = findViewById(R.id.button6);
+        //Button btn7 = findViewById(R.id.button7);
+        //Button btn8 = findViewById(R.id.button8);
+        //Button btn9 = findViewById(R.id.button9);
+        //Button btnC = findViewById(R.id.buttonC);
+        //btn0.setOnClickListener(this);
+        //btn1.setOnClickListener(this);
+        //btn2.setOnClickListener(this);
+        //btn3.setOnClickListener(this);
+        //btn4.setOnClickListener(this);
+        //btn5.setOnClickListener(this);
+        //btn6.setOnClickListener(this);
+        //btn7.setOnClickListener(this);
+        //btn8.setOnClickListener(this);
+        //btn9.setOnClickListener(this);
+        //btnC.setOnClickListener(this);
+        //confirmBtn.setOnClickListener(this);
     }
 
     public void pointGain(){
@@ -85,9 +80,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         TextView pointTextView = findViewById(R.id.Points);
         pointTextView.setText(getString(R.string.current_points) + points);
     }
-
-
-
 
     public void append_answer(String button){
         TextView answerView = findViewById(R.id.answer);
@@ -101,27 +93,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
             append_answer("clear_answer");
         }
         answerView.setText(answerSelected);
-    }
-
-
-    public void amountOfQuestions(int amount_of_questions, String[] question_array){
-        System.out.println(""+question_array.length);
-
-
-
-        /*if(questions==5){
-            if (list.size() > 5) {
-                System.out.println(list.toString());
-                list.subList(5, list.size()).clear();
-                System.out.println(list.toString());
-            }
-        }
-        System.out.println(""+list.size());
-        if(questions==10){
-            for (int i = list.size()-1; i>=10 ; i--) {
-                list.remove(i);
-            }
-        }*/
     }
 
     public int generate_new_question_ID(int number_of_questions){
@@ -179,7 +150,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
             Question_ID = generate_new_question_ID(number_of_maximum_questions_selected);
         else
             Question_ID = 0;
-        System.out.println("QID " + Question_ID + "Maxiumum: " + number_of_maximum_questions_selected);
         question.setText(question_arraylist.get(Question_ID));
     }
 
