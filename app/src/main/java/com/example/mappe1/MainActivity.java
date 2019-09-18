@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button startBrn = findViewById(R.id.start_btn);
         Button statisticsBtn = findViewById(R.id.statistics_btn);
         Button preferenceBtn = findViewById(R.id.preference_btn);
-        System.out.println("ta vekk");
+        System.out.println("ta veksk");
 
 
         startBrn.setOnClickListener(new View.OnClickListener() {
