@@ -15,207 +15,16 @@
         android:textAlignment="center">
 
     </TextView>
-    <TableLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/Result"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
-
-        <TableRow
-            android:layout_marginStart="25dp">
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Navn:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="20dp"
-
-
-                >
-            </TextView>
-
-            <TextView
-                android:id="@+id/Result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="Resultat:"
-                android:textColor="@color/blackColor"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Tid:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="25dp"
-            >
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Navn:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                >
-            </TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Resultat:"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Tid:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-        </TableRow>
-
-        <TableRow
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp">
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Navn:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                >
-            </TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Resultat:"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Tid:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="25dp">
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Navn:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                >
-            </TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Resultat:"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Tid:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="25dp">
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Navn:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                >
-            </TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Resultat:"
-                android:textSize="20dp"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-            <TextView
-                android:textColor="@color/blackColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Tid:"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                >
-            </TextView>
-        </TableRow>
-
-
-
-
-    </TableLayout>
+        android:textColor="@color/blackColor"
+        android:layout_gravity="center"
+        android:textSize="28sp"
+        android:layout_marginTop="10dp"
+        />
 
     <Button
         android:id="@+id/returnBtn"
@@ -226,6 +35,16 @@
         android:layout_marginTop="50dp"
         android:textSize="20dp"
         android:text="@string/return_btn_title" />
+
+    <Button
+        android:id="@+id/deleteHighscore"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/whiteColor"
+        android:layout_marginTop="25dp"
+        android:textSize="20dp"
+        android:text="@string/deleteHighscore" />
 
 
 </LinearLayout>
