@@ -15,54 +15,56 @@ import java.util.Random;
 
 
 public class StartAcitivty  extends AppCompatActivity implements View.OnClickListener{
-
-
+    
     public String answerSelected = "";
     public int correct_answers = 0;
     String [] questions;
     String [] answers;
     ArrayList <String> question_arraylist, answer_arraylist;
-    public int number_of_questions_left, number_of_max_questions;
-    TextView correct_answers_textview, question, start_title;
-    int Question_ID;
+    public int number_of_questions_left, number_of_max_questions, Question_ID;
+    TextView correct_answers_textview, question, start_title,answerView,questions_left_textview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
-
-        questions = getResources().getStringArray(R.array.questions);
-        answers = getResources().getStringArray(R.array.answers);
-        question_arraylist = new ArrayList<>(Arrays.asList(questions));
-        answer_arraylist = new ArrayList<>(Arrays.asList(answers));
-
-        start_title = findViewById(R.id.start_game_title);
-        question = findViewById(R.id.question);
-
+        getAllResources();
         Intent intent = getIntent();
         number_of_questions_left
                 = number_of_max_questions
                 = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
-
         new_question();
         check_saved_instance_state(savedInstanceState);
     }
 
+    public void getAllResources(){
+        questions = getResources().getStringArray(R.array.questions);
+        answers = getResources().getStringArray(R.array.answers);
+        question_arraylist = new ArrayList<>(Arrays.asList(questions));
+        answer_arraylist = new ArrayList<>(Arrays.asList(answers));
+        correct_answers_textview = findViewById(R.id.correct_answers);
+        start_title = findViewById(R.id.start_game_title);
+        question = findViewById(R.id.question);
+        correct_answers_textview = findViewById(R.id.correct_answers);
+        answerView = findViewById(R.id.answer);
+        questions_left_textview = findViewById(R.id.questions_left);
+    }
 
     public void check_saved_instance_state(Bundle savedInstanceState){
         if(savedInstanceState != null) {
             correct_answers = savedInstanceState.getInt("correct_answers");
-            correct_answers_textview = findViewById(R.id.correct_answers);
-            correct_answers_textview.setText(String.valueOf(correct_answers));
             number_of_questions_left = savedInstanceState.getInt("number_of_questions_left");
             number_of_max_questions = savedInstanceState.getInt("number_of_max_questions");
-            TextView remaining_questions_textview = findViewById(R.id.questions_left);
-            remaining_questions_textview.setText(getString(R.string.questions_left) + number_of_questions_left);
             String text = savedInstanceState.getString("language");
-            start_title.setText(text);
-            Question_ID = savedInstanceState.getInt("currentQuestion");question_arraylist=savedInstanceState.getStringArrayList("questionArraylist");
+            Question_ID = savedInstanceState.getInt("currentQuestion");
+            question_arraylist=savedInstanceState.getStringArrayList("questionArraylist");
             answer_arraylist=savedInstanceState.getStringArrayList("answerArraylist");
+
+            correct_answers_textview.setText(String.valueOf(correct_answers));
+            start_title.setText(text);
             question.setText(question_arraylist.get(Question_ID));
+            questions_left_textview.setText(
+                    getString(R.string.questions_left) + number_of_questions_left);
         }
     }
 
@@ -74,22 +76,17 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         outState.putInt("currentQuestion", Question_ID);
         outState.putInt("correct_answers",correct_answers);
         outState.putInt("number_of_questions_left", number_of_questions_left);
-        outState.putInt("number_of_max_questions",number_of_max_questions);//-------------------
+        outState.putInt("number_of_max_questions",number_of_max_questions);
         outState.putStringArrayList("questionArraylist",question_arraylist);
         outState.putStringArrayList("answerArraylist", answer_arraylist);
     }
 
-
-
-
     public void pointGain(){
         correct_answers++;
-        correct_answers_textview = findViewById(R.id.correct_answers);
         correct_answers_textview.setText(String.valueOf(correct_answers));
     }
 
     public void append_answer(String button){
-        TextView answerView = findViewById(R.id.answer);
         if(button.equals("clear_answer")){
             answerSelected="";
         }
@@ -115,7 +112,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         next_question();
         else
             createDialog();
-
     }
 
     public void createDialog(){
@@ -123,14 +119,12 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         builder.setCancelable(false);
         builder.setTitle(getResources().getString(R.string.winner));
         builder.setMessage(getResources().getString(R.string.complete_message));
-
-        builder.setPositiveButton(getResources().getString(R.string.back_to_highscore), new DialogInterface.OnClickListener() {
-
+        builder.setPositiveButton(getResources().getString(R.string.back_to_highscore),
+                new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 System.out.println("BYTTER SCENE");
                 toMenu();
-
             }
         });
         builder.show();
@@ -138,7 +132,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
 
     public void toMenu(){
         Intent intent = new Intent(this,StatisticsAcitivty.class);
-        //intent.putExtra("SCORE", questions_left);
+        intent.putExtra("SCORE", correct_answers);
         startActivity(intent);
     }
 
@@ -147,8 +141,8 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     }
 
     public void next_question(){
-        TextView pointTextView = findViewById(R.id.questions_left);
-        pointTextView.setText(getString(R.string.questions_left) + (number_of_questions_left - 1));
+        questions_left_textview.setText(
+                getString(R.string.questions_left) + (number_of_questions_left - 1));
         question_arraylist.remove(Question_ID);
         answer_arraylist.remove(Question_ID);
         number_of_questions_left--;
@@ -162,8 +156,8 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     public void new_question(){
         Question_ID = generate_new_question_ID(number_of_questions_left);
         question.setText(question_arraylist.get(Question_ID));
-        TextView questions_left_textview = findViewById(R.id.questions_left);
-        questions_left_textview.setText(getString(R.string.questions_left) + (number_of_questions_left));
+        questions_left_textview.setText(
+                getString(R.string.questions_left) + (number_of_questions_left));
     }
 
     @Override
@@ -208,7 +202,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
                 default:
                     System.out.println("Something went horribly wrong");
                     break;
-
         }
     }
 }
