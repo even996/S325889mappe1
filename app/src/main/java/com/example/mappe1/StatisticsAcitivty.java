@@ -10,9 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StatisticsAcitivty extends AppCompatActivity {
     int score;
+    TextView t;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("KJØRER ONCREATE");
         setContentView(R.layout.statistics_activity);
         Button prefReturnBtn = findViewById(R.id.returnBtn);
         prefReturnBtn.setOnClickListener(new View.OnClickListener() {
@@ -40,21 +42,32 @@ public class StatisticsAcitivty extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        TextView t = findViewById(R.id.Result);
-        getSharedPreferences("PREFERENCE",MODE_PRIVATE).edit().putString("HIGHSCORE",String.valueOf(score));
+        System.out.println("Valueof score: " + String.valueOf(score));
+        getSharedPreferences("PREFERENCE",MODE_PRIVATE).edit().putString("HIGHSCORE",String.valueOf(score)).apply();
+        System.out.println("KJØRER ONPAUSE!: " + getSharedPreferences("PREFERENCE",MODE_PRIVATE).getString("HIGHSCORE",String.valueOf("")));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        TextView t = findViewById(R.id.Result);
-        //if (getSharedPreferences("REFERENCE",MODE_PRIVATE).getString("HIGHSCORE","").length()>0)
-        t.setText(getSharedPreferences("REFERENCE",MODE_PRIVATE).getString("HIGHSCORE",String.valueOf("")));
+        String sharedPreference = getSharedPreferences("PREFERENCE",MODE_PRIVATE).getString("HIGHSCORE","");
+        System.out.println("KJØRER ONRESUME!: " + sharedPreference + " Score: " + score);
+        t = findViewById(R.id.Result);
+        if (sharedPreference.length()> 0 && Integer.parseInt(sharedPreference) > score)
+        score = Integer.parseInt(getSharedPreferences("PREFERENCE",MODE_PRIVATE).getString("HIGHSCORE",String.valueOf("")));
+        System.out.println("Score2: " + score);
+        t.setText(String.valueOf(score));
     }
 
     public void menu(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void delete_highscore(View view){
+        score = 0;
+        getSharedPreferences("PREFERENCE",MODE_PRIVATE).edit().putString("HIGHSCORE",String.valueOf(score)).apply();
+        t.setText(String.valueOf(score));
     }
 
 }
