@@ -15,7 +15,7 @@ import java.util.Random;
 
 
 public class StartAcitivty  extends AppCompatActivity implements View.OnClickListener{
-    
+
     public String answerSelected = "";
     public int correct_answers = 0;
     String [] questions;
@@ -205,23 +205,3 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
