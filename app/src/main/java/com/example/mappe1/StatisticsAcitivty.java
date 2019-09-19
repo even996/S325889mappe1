@@ -1,5 +1,7 @@
 package com.example.mappe1;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -64,7 +66,32 @@ public class StatisticsAcitivty extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void delete_highscore(View view){
+    public void createDialog(View view){
+        System.out.println("NÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅ");
+        final AlertDialog.Builder builder = new AlertDialog.Builder(StatisticsAcitivty.this);
+        builder.setCancelable(true);
+        builder.setTitle("Warning!");
+        builder.setMessage("Are you sure you want to reset the highscore list?");
+
+        builder.setPositiveButton("Yes, delete.", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                System.out.println("BYTTER SCENE");
+                delete_highscore();
+
+            }
+        });
+
+        builder.setNegativeButton("No, cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    public void delete_highscore(){
         score = 0;
         getSharedPreferences("PREFERENCE",MODE_PRIVATE).edit().putString("HIGHSCORE",String.valueOf(score)).apply();
         t.setText(String.valueOf(score));

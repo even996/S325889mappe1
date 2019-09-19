@@ -45,7 +45,7 @@
         android:layout_marginTop="25dp"
         android:textSize="20dp"
         android:text="@string/deleteHighscore"
-        android:onClick="delete_highscore"/>
+        android:onClick="createDialog"/>
 
 
 </LinearLayout>
