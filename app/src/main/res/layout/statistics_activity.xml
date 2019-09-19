@@ -5,6 +5,7 @@
     android:background="@drawable/bgkids">
 
     <TextView
+        android:id="@+id/statistics_title"
         android:layout_width="wrap_content"
         android:layout_marginTop="70dp"
         android:layout_height="wrap_content"

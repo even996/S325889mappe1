@@ -11,14 +11,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StatisticsAcitivty extends AppCompatActivity {
+
     int score;
     TextView t;
+    TextView statisticsTitle;
+    Button prefReturnBtn, deleteHighscore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.println("KJØRER ONCREATE");
         setContentView(R.layout.statistics_activity);
-        Button prefReturnBtn = findViewById(R.id.returnBtn);
+        prefReturnBtn = findViewById(R.id.returnBtn);
+        deleteHighscore = findViewById(R.id.deleteHighscore);
+        statisticsTitle = findViewById(R.id.statistics_title);
         prefReturnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +45,31 @@ public class StatisticsAcitivty extends AppCompatActivity {
             t.setText(score + "");
         }
 
+
+        if(savedInstanceState != null) {
+
+            score=savedInstanceState.getInt("score");
+            String title = savedInstanceState.getString("statisticsTitle");
+            statisticsTitle = findViewById(R.id.statistics_title);
+            System.out.println(savedInstanceState.getString("statisticsTitle"));
+            statisticsTitle.setText(title);
+            t.setText(String.valueOf(score));
+            prefReturnBtn.setText(savedInstanceState.getString("returnBtn"));
+            deleteHighscore.setText(savedInstanceState.getString("deleteHighScore"));
+        }
+
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("score", score);
+        outState.putString("statisticsTitle", statisticsTitle.getText().toString());
+        outState.putString("returnBtn",prefReturnBtn.getText().toString());
+        outState.putString("deleteHighScore",deleteHighscore.getText().toString());
+    }
+
+
 
     @Override
     protected void onPause() {
