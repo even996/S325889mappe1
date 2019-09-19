@@ -1,5 +1,5 @@
 <resources>
-    <string name="current_points">Poeng: </string>
+    <string name="questions_left">Igjen: </string>
     <string name="app_name">Mappe1</string>
     <string name="opening_text">Velkommen til Matte</string>
     <string name="start_game">Start spill</string>

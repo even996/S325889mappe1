@@ -1,5 +1,5 @@
 <resources>
-    <string name="current_points">Punkte: </string>
+    <string name="questions_left">Punkte: </string>
     <string name="app_name">Mappe1</string>
     <string name="opening_text">Willkommen in Mathe</string>
     <string name="start_game">spiele starten</string>
@@ -12,7 +12,7 @@
     <string name="preferences_option_one">5 Fragen</string>
     <string name="preferences_option_two">10 Fragen</string>
     <string name="preferences_option_three">25 Fragen</string>
-    <string name="start_game_score">Punkte :   </string>
+    <string name="start_game_score">Kvestiuns leftus :   </string>
     <string name="statt_game_confirm">=</string>
     <string name="zero">0</string>
     <string name="one">1</string>

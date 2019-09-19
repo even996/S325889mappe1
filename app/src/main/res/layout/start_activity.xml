@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/Points"
+        android:id="@+id/questions_left"
         android:layout_width="98dp"
         android:layout_height="wrap_content"
         android:text="@string/start_game_score"
@@ -17,7 +17,7 @@
         android:textColor="@color/blackColor"
         android:textSize="20sp"></TextView>
     <TextView
-        android:id="@+id/score"
+        android:id="@+id/correct_answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"

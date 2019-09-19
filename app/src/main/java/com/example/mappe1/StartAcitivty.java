@@ -1,94 +1,91 @@
 package com.example.mappe1;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 
 public class StartAcitivty  extends AppCompatActivity implements View.OnClickListener{
 
 
     public String answerSelected = "";
-    public int points = 0;
+    public int correct_answers = 0;
     String [] questions;
     String [] answers;
     ArrayList <String> question_arraylist, answer_arraylist;
-    public int number_of_maximum_questions_selected;
-    TextView score, question, start_title;
+    public int number_of_questions_left, number_of_max_questions;
+    TextView correct_answers_textview, question, start_title;
     int Question_ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
+
         questions = getResources().getStringArray(R.array.questions);
         answers = getResources().getStringArray(R.array.answers);
         question_arraylist = new ArrayList<>(Arrays.asList(questions));
         answer_arraylist = new ArrayList<>(Arrays.asList(answers));
-        start_title = findViewById(R.id.start_game_title);
 
+        start_title = findViewById(R.id.start_game_title);
+        question = findViewById(R.id.question);
 
         Intent intent = getIntent();
-        number_of_maximum_questions_selected = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
-        question = findViewById(R.id.question);
+        number_of_questions_left
+                = number_of_max_questions
+                = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
+
         new_question();
+        check_saved_instance_state(savedInstanceState);
+    }
 
 
-
+    public void check_saved_instance_state(Bundle savedInstanceState){
         if(savedInstanceState != null) {
-            points = savedInstanceState.getInt("currentScore");
-            score = findViewById(R.id.score);
-            score.setText(String.valueOf(points));
-            TextView pointTextView = findViewById(R.id.Points);
-            pointTextView.setText(getString(R.string.current_points) + points);
+            correct_answers = savedInstanceState.getInt("correct_answers");
+            correct_answers_textview = findViewById(R.id.correct_answers);
+            correct_answers_textview.setText(String.valueOf(correct_answers));
+            number_of_questions_left = savedInstanceState.getInt("number_of_questions_left");
+            number_of_max_questions = savedInstanceState.getInt("number_of_max_questions");
+            TextView remaining_questions_textview = findViewById(R.id.questions_left);
+            remaining_questions_textview.setText(getString(R.string.questions_left) + number_of_questions_left);
             String text = savedInstanceState.getString("language");
             start_title.setText(text);
-            Question_ID = savedInstanceState.getInt("currentQuestion");
-            number_of_maximum_questions_selected = savedInstanceState.getInt("numberOfQuestions");
-            question_arraylist=savedInstanceState.getStringArrayList("questionArraylist");
+            Question_ID = savedInstanceState.getInt("currentQuestion");question_arraylist=savedInstanceState.getStringArrayList("questionArraylist");
             answer_arraylist=savedInstanceState.getStringArrayList("answerArraylist");
             question.setText(question_arraylist.get(Question_ID));
         }
     }
 
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("currentScore", points);
+        outState.putInt("currentScore", number_of_questions_left);
         outState.putString("language", start_title.getText().toString());
         outState.putInt("currentQuestion", Question_ID);
-        outState.putInt("numberOfQuestions", number_of_maximum_questions_selected);
+        outState.putInt("correct_answers",correct_answers);
+        outState.putInt("number_of_questions_left", number_of_questions_left);
+        outState.putInt("number_of_max_questions",number_of_max_questions);//-------------------
         outState.putStringArrayList("questionArraylist",question_arraylist);
-        System.out.println(question_arraylist);
         outState.putStringArrayList("answerArraylist", answer_arraylist);
-        System.out.println("======================================0");
-        System.out.println(answer_arraylist);
-
     }
 
 
 
 
     public void pointGain(){
-        points++;
-        score = findViewById(R.id.score);
-        score.setText(String.valueOf(points));
-        TextView pointTextView = findViewById(R.id.Points);
-        pointTextView.setText(getString(R.string.current_points) + points);
+        correct_answers++;
+        correct_answers_textview = findViewById(R.id.correct_answers);
+        correct_answers_textview.setText(String.valueOf(correct_answers));
     }
 
     public void append_answer(String button){
@@ -111,13 +108,10 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     }
 
     public void confirm_answer(){
-        /*if(answerSelected.equals("")){
-            append_answer(answerSelected);
-        }*/
         if(correct_answer())
             pointGain();
         append_answer("clear_answer");
-        if (number_of_maximum_questions_selected > 1)
+        if (number_of_questions_left > 1)
         next_question();
         else
             createDialog();
@@ -125,7 +119,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     }
 
     public void createDialog(){
-        System.out.println("NÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅ");
         AlertDialog.Builder builder = new AlertDialog.Builder(StartAcitivty.this);
         builder.setCancelable(false);
         builder.setTitle(getResources().getString(R.string.winner));
@@ -145,7 +138,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
 
     public void toMenu(){
         Intent intent = new Intent(this,StatisticsAcitivty.class);
-        intent.putExtra("SCORE", points);
+        //intent.putExtra("SCORE", questions_left);
         startActivity(intent);
     }
 
@@ -154,19 +147,23 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     }
 
     public void next_question(){
+        TextView pointTextView = findViewById(R.id.questions_left);
+        pointTextView.setText(getString(R.string.questions_left) + (number_of_questions_left - 1));
         question_arraylist.remove(Question_ID);
         answer_arraylist.remove(Question_ID);
-        number_of_maximum_questions_selected--;
-        if (number_of_maximum_questions_selected>1)
-            Question_ID = generate_new_question_ID(number_of_maximum_questions_selected);
+        number_of_questions_left--;
+        if (number_of_questions_left >1)
+            Question_ID = generate_new_question_ID(number_of_questions_left);
         else
             Question_ID = 0;
         question.setText(question_arraylist.get(Question_ID));
     }
 
     public void new_question(){
-        Question_ID = generate_new_question_ID(number_of_maximum_questions_selected);
+        Question_ID = generate_new_question_ID(number_of_questions_left);
         question.setText(question_arraylist.get(Question_ID));
+        TextView questions_left_textview = findViewById(R.id.questions_left);
+        questions_left_textview.setText(getString(R.string.questions_left) + (number_of_questions_left));
     }
 
     @Override

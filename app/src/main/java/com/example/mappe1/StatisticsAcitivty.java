@@ -47,7 +47,7 @@ public class StatisticsAcitivty extends AppCompatActivity {
 
 
         if(savedInstanceState != null) {
-            score=savedInstanceState.getInt("score");
+            score=savedInstanceState.getInt("correct_answers_textview");
             String title = savedInstanceState.getString("statisticsTitle");
             statisticsTitle = findViewById(R.id.statistics_title);
             System.out.println(savedInstanceState.getString("statisticsTitle"));
@@ -62,7 +62,7 @@ public class StatisticsAcitivty extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("score", score);
+        outState.putInt("correct_answers_textview", score);
         outState.putString("statisticsTitle", statisticsTitle.getText().toString());
         outState.putString("returnBtn",prefReturnBtn.getText().toString());
         outState.putString("deleteHighScore",deleteHighscore.getText().toString());
@@ -73,7 +73,7 @@ public class StatisticsAcitivty extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        System.out.println("Valueof score: " + String.valueOf(score));
+        System.out.println("Valueof correct_answers_textview: " + String.valueOf(score));
         getSharedPreferences("PREFERENCE",MODE_PRIVATE).edit().putString("HIGHSCORE",String.valueOf(score)).apply();
         System.out.println("KJØRER ONPAUSE!: " + getSharedPreferences("PREFERENCE",MODE_PRIVATE).getString("HIGHSCORE",String.valueOf("")));
     }
