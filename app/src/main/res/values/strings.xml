@@ -26,6 +26,18 @@
     <string name="nine">9</string>
     <string name="cancel">C</string>
     <string name="deleteHighscore">Slett highscore</string>
+    <string name="complete_message">Du er ferdig med alle spørsmålene</string>
+    <string name="back_to_highscore">Gå tilbake til resultater</string>
+    <string name="resetScore">Vil du slette dne gamle resultatet</string>
+    <string name="yes">Ja</string>
+    <string name="winner">Du vant!</string>
+    <string name="warning">Advarsel</string>
+    <string name="no">Nei,avbryt</string>
+
+
+
+
+
 
 
 

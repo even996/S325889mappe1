@@ -47,7 +47,6 @@ public class StatisticsAcitivty extends AppCompatActivity {
 
 
         if(savedInstanceState != null) {
-
             score=savedInstanceState.getInt("score");
             String title = savedInstanceState.getString("statisticsTitle");
             statisticsTitle = findViewById(R.id.statistics_title);
@@ -100,10 +99,11 @@ public class StatisticsAcitivty extends AppCompatActivity {
         System.out.println("NÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅ");
         final AlertDialog.Builder builder = new AlertDialog.Builder(StatisticsAcitivty.this);
         builder.setCancelable(true);
-        builder.setTitle("Warning!");
-        builder.setMessage("Are you sure you want to reset the highscore list?");
+        builder.setTitle(getResources().getString(R.string.warning));
+        getResources().getString(R.string.complete_message);
+        builder.setMessage(getResources().getString(R.string.resetScore));
 
-        builder.setPositiveButton("Yes, delete.", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 System.out.println("BYTTER SCENE");
@@ -112,7 +112,7 @@ public class StatisticsAcitivty extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("No, cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();

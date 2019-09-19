@@ -45,7 +45,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         number_of_maximum_questions_selected = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
         question = findViewById(R.id.question);
         new_question();
-        find_all_views_by_id_and_set_on_click_listener();
+
 
 
         if(savedInstanceState != null) {
@@ -81,32 +81,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    protected  void find_all_views_by_id_and_set_on_click_listener(){
-        //Button confirmBtn = findViewById(R.id.confirm);
-        //Button btn0 = findViewById(R.id.button0);
-        //Button btn1 = findViewById(R.id.button1);
-        //Button btn2 = findViewById(R.id.button2);
-        //Button btn3 = findViewById(R.id.button3);
-        //Button btn4 = findViewById(R.id.button4);
-        //Button btn5 = findViewById(R.id.button5);
-        //Button btn6 = findViewById(R.id.button6);
-        //Button btn7 = findViewById(R.id.button7);
-        //Button btn8 = findViewById(R.id.button8);
-        //Button btn9 = findViewById(R.id.button9);
-        //Button btnC = findViewById(R.id.buttonC);
-        //btn0.setOnClickListener(this);
-        //btn1.setOnClickListener(this);
-        //btn2.setOnClickListener(this);
-        //btn3.setOnClickListener(this);
-        //btn4.setOnClickListener(this);
-        //btn5.setOnClickListener(this);
-        //btn6.setOnClickListener(this);
-        //btn7.setOnClickListener(this);
-        //btn8.setOnClickListener(this);
-        //btn9.setOnClickListener(this);
-        //btnC.setOnClickListener(this);
-        //confirmBtn.setOnClickListener(this);
-    }
+
 
     public void pointGain(){
         points++;
@@ -153,10 +128,11 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         System.out.println("NÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅÅ");
         AlertDialog.Builder builder = new AlertDialog.Builder(StartAcitivty.this);
         builder.setCancelable(false);
-        builder.setTitle("You win!");
-        builder.setMessage("You've completed all the questions");
+        builder.setTitle(getResources().getString(R.string.winner));
+        builder.setMessage(getResources().getString(R.string.complete_message));
 
-        builder.setPositiveButton("Back to main high scores", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getResources().getString(R.string.back_to_highscore), new DialogInterface.OnClickListener() {
+
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 System.out.println("BYTTER SCENE");

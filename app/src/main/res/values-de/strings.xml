@@ -26,4 +26,14 @@
     <string name="nine">9</string>
     <string name="cancel">C</string>
     <string name="deleteHighscore">Kankenshragen natten</string>
+    <string name="complete_message">Sie sind mit allen Fragen fertig</string>
+    <string name="back_to_highscore">Gehen Sie zurück zu den Ergebnissen</string>
+    <string name="resetScore">Möchten Sie das alte Ergebnis löschen?</string>
+    <string name="yes">Ja</string>
+    <string name="winner">Du hast gewonnen</string>
+    <string name="warning">Warnung</string>
+    <string name="no">Nein, stornieren</string>
+
+
+
 </resources>

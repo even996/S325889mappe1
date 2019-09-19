@@ -32,11 +32,10 @@ public class MainActivity extends AppCompatActivity {
         System.out.println((getIntent().hasExtra(EXTRA_NUMBER)+ "test123"));
         Intent intent = getIntent();
         checked = intent.getIntExtra(PreferenceAcitivty.EXTRA_NUMBER, 5);
-        System.out.println("teeeest" + checked);
         startBtn = findViewById(R.id.start_btn);
         statisticsBtn = findViewById(R.id.statistics_btn);
         preferenceBtn = findViewById(R.id.preference_btn);
-        System.out.println("ta veksk");
+
 
 
 
@@ -66,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if(savedInstanceState != null){
+            System.out.println("kjører gjennom");
             menuTitle.setText(savedInstanceState.getString("menuTitle"));
             startBtn.setText(savedInstanceState.getString("startBtn"));
             statisticsBtn.setText(savedInstanceState.getString("staticsBtn"));
             preferenceBtn.setText(savedInstanceState.getString("preferenceBtn"));
         }
-
     }
 
     @Override
@@ -81,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         outState.putString("startBtn", startBtn.getText().toString());
         outState.putString("staticsBtn", statisticsBtn.getText().toString());
         outState.putString("preferenceBtn", preferenceBtn.getText().toString());
-
     }
 
     public void nextIntent(int i){

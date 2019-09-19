@@ -50,9 +50,6 @@ public class PreferenceAcitivty extends AppCompatActivity {
 
 
 
-
-
-
     public void buttonsPressed(){
 
         prefReturnBtn.setOnClickListener(new View.OnClickListener() {
