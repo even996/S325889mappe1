@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgkids">
+    android:background="@drawable/bgkids"
+
+    >
 
     <TextView
         android:id="@+id/statistics_title"
         android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
         android:textColor="@color/blackColor"
         android:fontFamily="casual"
@@ -29,25 +31,63 @@
         android:textAlignment="center">
 
     </TextView>
-    <Button
-    android:id="@+id/returnBtn"
-    android:layout_width="220dp"
-    android:layout_height="60dp"
-    android:layout_gravity="center"
-    android:background="@drawable/button_style2"
-    android:layout_marginTop="10dp"
-    android:textSize="20sp"
-    android:text="@string/return_btn_title" />
 
-    <Button
-        android:id="@+id/deleteHighscore"
-        android:layout_width="220dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:background="@drawable/button_style4"
-        android:layout_marginTop="25dp"
-        android:textSize="20sp"
-        android:text="@string/deleteHighscore"
-        android:onClick="createDialog"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:background="@drawable/home"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="20dp"
+
+
+            >
+        </ImageView>
+        <Button
+            android:id="@+id/returnBtn"
+            android:layout_width="220dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="190dp"
+            android:background="@drawable/button_style2"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:text="@string/return_btn_title" />
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/deleteHighscore"
+            android:layout_width="220dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/button_style4"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="190dp"
+            android:textSize="20sp"
+            android:text="@string/deleteHighscore"
+            android:onClick="createDialog"/>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="42dp"
+            android:background="@drawable/delete"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="27dp"
+            >
+        </ImageView>
+
+    </RelativeLayout>
+
+
 
 </LinearLayout>
