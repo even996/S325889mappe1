@@ -8,6 +8,7 @@
         android:id="@+id/statistics_title"
         android:layout_width="wrap_content"
         android:layout_marginTop="70dp"
+        android:fontFamily="casual"
         android:layout_height="wrap_content"
         android:textColor="@color/blackColor"
         android:text="@string/statistics_title"
@@ -23,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/blackColor"
         android:layout_gravity="center"
-        android:textSize="28sp"
+        android:textSize="40sp"
         android:layout_marginTop="10dp"
         />
 
@@ -32,8 +33,8 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/whiteColor"
-        android:layout_marginTop="50dp"
+        android:background="@drawable/button_style2"
+        android:layout_marginTop="30dp"
         android:textSize="20dp"
         android:text="@string/return_btn_title" />
 
@@ -42,7 +43,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/whiteColor"
+        android:background="@drawable/button_style4"
         android:layout_marginTop="25dp"
         android:textSize="20dp"
         android:text="@string/deleteHighscore"

@@ -130,6 +130,38 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         builder.show();
     }
 
+    /*
+
+    private boolean cancel;
+    @Override
+    public void onBackPressed() {
+
+        cancel = false;
+        AlertDialog.Builder builder = new AlertDialog.Builder(StartAcitivty.this);
+        builder.setCancelable(false);
+        builder.setMessage("Do you want to quit");
+        builder.setNegativeButton("yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        cancel = true;
+                        dialogInterface.cancel();
+                    }
+                });
+        builder.show();
+        System.out.println(cancel);
+        if(cancel){
+            System.out.println("yoyoyoyoo");
+            super.onBackPressed();
+        }
+        System.out.println(cancel);
+
+
+
+    }
+
+
+     */
     public void toMenu(){
         Intent intent = new Intent(this,StatisticsAcitivty.class);
         intent.putExtra("SCORE", correct_answers);

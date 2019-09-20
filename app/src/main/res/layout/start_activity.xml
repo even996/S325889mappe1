@@ -33,6 +33,7 @@
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="casual"
         android:text="@string/start_game_title"
         android:textAlignment="center"
         android:textColor="@color/blackColor"
@@ -45,7 +46,7 @@
         android:layout_width="173dp"
         android:layout_height="47dp"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:textAlignment="center"
         android:textColor="@color/blackColor"
         android:textSize="30sp"
@@ -58,11 +59,12 @@
         android:layout_width="150dp"
         android:layout_height="62dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:textColor="@color/blackColor"
         android:textAlignment="center"
         android:textSize="40sp"
-        ></TextView>
+        >
+
+    </TextView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -77,28 +79,28 @@
             android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/whiteColor"
+            android:background="@color/blueColor"
             android:layout_marginStart="24dp"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:text="@string/seven"
             android:onClick="onClick"/>
 
         <Button
             android:id="@+id/button5"
             android:layout_width="wrap_content"
-            android:background="@color/whiteColor"
+            android:background="@color/blueColor"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button8"
             android:layout_marginTop="18dp"
             android:layout_marginEnd="27dp"
             android:layout_toStartOf="@+id/button6"
             android:text="@string/five"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:onClick="onClick" />
 
         <Button
             android:id="@+id/button6"
-            android:background="@color/whiteColor"
+            android:background="@color/blueColor"
             android:textSize="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,9 +113,9 @@
 
         <Button
             android:id="@+id/button4"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:layout_marginStart="24dp"
-            android:background="@color/whiteColor"
+            android:background="@color/blueColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button7"
@@ -125,9 +127,9 @@
 
         <Button
             android:id="@+id/button1"
-            android:background="@color/whiteColor"
+            android:background="@color/blueColor"
             android:layout_marginStart="24dp"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button4"
@@ -138,20 +140,20 @@
 
         <Button
             android:id="@+id/button2"
-            android:background="@color/whiteColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button5"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="135dp"
+            android:background="@color/blueColor"
+            android:onClick="onClick"
             android:text="@string/two"
-            android:textSize="30dp"
-            android:onClick="onClick"/>
+            android:textSize="30sp" />
 
         <Button
             android:id="@+id/buttonC"
-            android:background="@color/whiteColor"
+            android:background="@color/redColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button2"
@@ -159,26 +161,26 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="135dp"
             android:text="@string/cancel"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:onClick="onClick"/>
 
         <Button
             android:id="@+id/confirm"
-            android:layout_width="98dp"
+            android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
             android:layout_below="@+id/button2"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="13dp"
-            android:background="@color/whiteColor"
+            android:layout_marginEnd="21dp"
+            android:background="@color/greenColor"
             android:text="@string/statt_game_confirm"
-            android:textSize="20dp"
+            android:textSize="30sp"
             android:onClick="onClick"/>
 
         <Button
             android:id="@+id/button0"
-            android:background="@color/whiteColor"
+            android:background="@color/blueColor"
             android:layout_marginStart="24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -186,13 +188,13 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="34dp"
             android:text="@string/zero"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:onClick="onClick"/>
 
         <Button
             android:id="@+id/button3"
-            android:background="@color/whiteColor"
-            android:textSize="30dp"
+            android:background="@color/blueColor"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/button6"
@@ -204,7 +206,7 @@
 
         <Button
             android:id="@+id/button8"
-            android:background="@color/whiteColor"
+            android:background="@color/blueColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="23dp"
@@ -217,8 +219,8 @@
 
         <Button
             android:id="@+id/button9"
-            android:background="@color/whiteColor"
-            android:textSize="30dp"
+            android:background="@color/blueColor"
+            android:textSize="30sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

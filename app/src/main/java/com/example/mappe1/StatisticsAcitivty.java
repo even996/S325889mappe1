@@ -70,6 +70,8 @@ public class StatisticsAcitivty extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void onPause() {
         super.onPause();

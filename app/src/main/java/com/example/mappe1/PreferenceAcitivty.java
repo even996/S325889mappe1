@@ -27,10 +27,6 @@ public class PreferenceAcitivty extends AppCompatActivity {
     public CheckBox checkBox1, checkBox2, checkBox3;
     public int languageNumber;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +41,6 @@ public class PreferenceAcitivty extends AppCompatActivity {
         buttonsPressed();
 
     }
-
-
-
-
 
     public void buttonsPressed(){
 
