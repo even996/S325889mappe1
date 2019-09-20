@@ -52,13 +52,10 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
             correct_answers = savedInstanceState.getInt("correct_answers");
             number_of_questions_left = savedInstanceState.getInt("number_of_questions_left");
             wrong_answers = savedInstanceState.getInt("wrong_answers");
-            String text = savedInstanceState.getString("language");
             Question_ID = savedInstanceState.getInt("currentQuestion");
             question_arraylist=savedInstanceState.getStringArrayList("questionArraylist");
             answer_arraylist=savedInstanceState.getStringArrayList("answerArraylist");
-
             correct_answers_textview.setText(String.valueOf(correct_answers));
-            start_title.setText(text);
             question.setText(question_arraylist.get(Question_ID));
             wrong_answers_textview.setText(String.valueOf(wrong_answers));
         }
@@ -67,7 +64,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("language", start_title.getText().toString());
+
         outState.putInt("currentQuestion", Question_ID);
         outState.putInt("correct_answers",correct_answers);
         outState.putInt("number_of_questions_left", number_of_questions_left);
