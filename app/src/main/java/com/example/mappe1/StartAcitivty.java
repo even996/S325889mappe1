@@ -21,8 +21,8 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     String [] questions;
     String [] answers;
     ArrayList <String> question_arraylist, answer_arraylist;
-    public int number_of_questions_left, number_of_max_questions, Question_ID;
-    TextView correct_answers_textview, question, start_title,answerView,questions_left_textview;
+    public int number_of_questions_left, wrong_answers, Question_ID;
+    TextView correct_answers_textview, question, start_title,answerView, wrong_answers_textview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +30,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.start_activity);
         getAllResources();
         Intent intent = getIntent();
-        number_of_questions_left
-                = number_of_max_questions
-                = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
+        number_of_questions_left = intent.getIntExtra(MainActivity.EXTRA_NUMBER, 5);
         new_question();
         check_saved_instance_state(savedInstanceState);
     }
@@ -45,16 +43,15 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         correct_answers_textview = findViewById(R.id.correct_answers);
         start_title = findViewById(R.id.start_game_title);
         question = findViewById(R.id.question);
-        correct_answers_textview = findViewById(R.id.correct_answers);
         answerView = findViewById(R.id.answer);
-        questions_left_textview = findViewById(R.id.questions_left);
+        wrong_answers_textview = findViewById(R.id.wrong_answers);
     }
 
     public void check_saved_instance_state(Bundle savedInstanceState){
         if(savedInstanceState != null) {
             correct_answers = savedInstanceState.getInt("correct_answers");
             number_of_questions_left = savedInstanceState.getInt("number_of_questions_left");
-            number_of_max_questions = savedInstanceState.getInt("number_of_max_questions");
+            wrong_answers = savedInstanceState.getInt("wrong_answers");
             String text = savedInstanceState.getString("language");
             Question_ID = savedInstanceState.getInt("currentQuestion");
             question_arraylist=savedInstanceState.getStringArrayList("questionArraylist");
@@ -63,27 +60,30 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
             correct_answers_textview.setText(String.valueOf(correct_answers));
             start_title.setText(text);
             question.setText(question_arraylist.get(Question_ID));
-            questions_left_textview.setText(
-                    getString(R.string.questions_left) + number_of_questions_left);
+            wrong_answers_textview.setText(String.valueOf(wrong_answers));
         }
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("currentScore", number_of_questions_left);
         outState.putString("language", start_title.getText().toString());
         outState.putInt("currentQuestion", Question_ID);
         outState.putInt("correct_answers",correct_answers);
         outState.putInt("number_of_questions_left", number_of_questions_left);
-        outState.putInt("number_of_max_questions",number_of_max_questions);
+        outState.putInt("wrong_answers", wrong_answers);
         outState.putStringArrayList("questionArraylist",question_arraylist);
         outState.putStringArrayList("answerArraylist", answer_arraylist);
     }
 
-    public void pointGain(){
+    public void gain_correct_answers(){
         correct_answers++;
         correct_answers_textview.setText(String.valueOf(correct_answers));
+    }
+
+    public void gain_wrong_answers(){
+        wrong_answers++;
+        wrong_answers_textview.setText(String.valueOf(wrong_answers));
     }
 
     public void append_answer(String button){
@@ -106,65 +106,81 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
 
     public void confirm_answer(){
         if(correct_answer())
-            pointGain();
+            gain_correct_answers();
+        else
+            gain_wrong_answers();
         append_answer("clear_answer");
         if (number_of_questions_left > 1)
         next_question();
         else
-            createDialog();
+            createDialog("StatisticsActivity");
     }
 
-    public void createDialog(){
+    public void createDialog(final String name_of_activity){
+        String title = "";
+        String message = "";
+        String positive_button_text = "";
+        String negative_button_text = "";
+        boolean negative_button = false;
+        boolean cancelable = true;
+        switch (name_of_activity){
+            case "StatisticsActivity":
+                cancelable = false;
+                title = "You've won!";
+                message = "Continue to see highscores";
+                positive_button_text = "Ok";
+                break;
+            case "MainActivity":
+                cancelable = true;
+                title = "Exit?";
+                message = "Are you sure you want to exit?";
+                positive_button_text = "Yes";
+                negative_button_text = "No";
+                negative_button = true;
+                break;
+                default:
+                    System.out.println("Something went wrong");
+                    break;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(StartAcitivty.this);
-        builder.setCancelable(false);
-        builder.setTitle(getResources().getString(R.string.winner));
-        builder.setMessage(getResources().getString(R.string.complete_message));
-        builder.setPositiveButton(getResources().getString(R.string.back_to_highscore),
+        builder.setCancelable(cancelable);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setPositiveButton(positive_button_text,
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                System.out.println("BYTTER SCENE");
-                toMenu();
+                change_activity(name_of_activity);
             }
         });
+        if (negative_button) {
+            builder.setNegativeButton(negative_button_text,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+        }
         builder.show();
     }
 
-    /*
-
-    private boolean cancel;
     @Override
     public void onBackPressed() {
-
-        cancel = false;
-        AlertDialog.Builder builder = new AlertDialog.Builder(StartAcitivty.this);
-        builder.setCancelable(false);
-        builder.setMessage("Do you want to quit");
-        builder.setNegativeButton("yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        cancel = true;
-                        dialogInterface.cancel();
-                    }
-                });
-        builder.show();
-        System.out.println(cancel);
-        if(cancel){
-            System.out.println("yoyoyoyoo");
-            super.onBackPressed();
-        }
-        System.out.println(cancel);
-
-
-
+        createDialog("MainActivity");
     }
-
-
-     */
-    public void toMenu(){
-        Intent intent = new Intent(this,StatisticsAcitivty.class);
-        intent.putExtra("SCORE", correct_answers);
+    
+    public void change_activity(String name_of_activity){
+        Intent intent = new Intent(this,MainActivity.class);
+        switch (name_of_activity) {
+            case "StatisticsActivity":
+                intent = new Intent(this,StatisticsAcitivty.class);
+                intent.putExtra("SCORE", correct_answers);
+                break;
+            case "MainActivity":
+                intent = new Intent(this,MainActivity.class);
+                break;
+        }
         startActivity(intent);
     }
 
@@ -173,8 +189,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     }
 
     public void next_question(){
-        questions_left_textview.setText(
-                getString(R.string.questions_left) + (number_of_questions_left - 1));
+        wrong_answers_textview.setText(String.valueOf(wrong_answers));
         question_arraylist.remove(Question_ID);
         answer_arraylist.remove(Question_ID);
         number_of_questions_left--;
@@ -188,8 +203,7 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
     public void new_question(){
         Question_ID = generate_new_question_ID(number_of_questions_left);
         question.setText(question_arraylist.get(Question_ID));
-        questions_left_textview.setText(
-                getString(R.string.questions_left) + (number_of_questions_left));
+        wrong_answers_textview.setText(String.valueOf(wrong_answers));
     }
 
     @Override

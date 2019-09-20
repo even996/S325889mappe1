@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/questions_left"
+        android:id="@+id/wrong_answers"
         android:layout_width="98dp"
         android:layout_height="wrap_content"
         android:text="@string/start_game_score"
