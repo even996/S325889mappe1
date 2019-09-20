@@ -41,7 +41,6 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         question_arraylist = new ArrayList<>(Arrays.asList(questions));
         answer_arraylist = new ArrayList<>(Arrays.asList(answers));
         correct_answers_textview = findViewById(R.id.correct_answers);
-        start_title = findViewById(R.id.start_game_title);
         question = findViewById(R.id.question);
         answerView = findViewById(R.id.answer);
         wrong_answers_textview = findViewById(R.id.wrong_answers);
