@@ -87,7 +87,6 @@
             android:layout_gravity="center"
             android:textAlignment="center"
             android:textColor="@color/blackColor"
-            android:text="20 + 20"
             android:textSize="40sp"
             >
         </TextView>
@@ -98,7 +97,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:textColor="@color/blackColor"
-            android:layout_marginStart="150dp"
+            android:layout_marginStart="130dp"
             android:gravity="center"
 
             android:textAlignment="center"
