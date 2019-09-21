@@ -108,7 +108,7 @@ public class PreferenceAcitivty extends AppCompatActivity {
         startActivity(intent);
     }
 
-   
+
 
     public void setLanguage(String country){
         Locale locale = new Locale(country);
@@ -128,8 +128,6 @@ public class PreferenceAcitivty extends AppCompatActivity {
         setLanguage(language);
 
     }
-
-
 
     public void german(View view){
         language="de";
