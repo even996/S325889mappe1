@@ -12,7 +12,6 @@
     <string name="preferences_option_one">5</string>
     <string name="preferences_option_two">10</string>
     <string name="preferences_option_three">25</string>
-    <string name="start_game_score">Poeng :   </string>
     <string name="statt_game_confirm">=</string>
     <string name="zero">0</string>
     <string name="one">1</string>
@@ -28,7 +27,7 @@
     <string name="deleteHighscore">Slett highscore</string>
     <string name="complete_message">Du er ferdig med alle spørsmålene</string>
     <string name="back_to_highscore">Gå tilbake til resultater</string>
-    <string name="resetScore">Vil du slette dne gamle resultatet</string>
+    <string name="resetScore">Vil du slette det beste resultatet ditt?</string>
     <string name="yes">Ja</string>
     <string name="winner">Spillet er ferdig</string>
     <string name="winner_Text">Fortsett til Beste Resultater</string>
@@ -37,23 +36,7 @@
     <string name="warning">Advarsel</string>
     <string name="no">Nei</string>
 
-
-
-
-
-
-
-
     <string-array name="questions">
-        <item>1 + 5 =</item>
-        <item>2 + 5 =</item>
-        <item>3 + 5 =</item>
-        <item>4 + 5 =</item>
-        <item>5 + 5 =</item>
-        <item>6 + 5 =</item>
-        <item>7 + 5 =</item>
-        <item>8 + 5 =</item>
-        <item>9 + 5 =</item>
         <item>10 + 5 =</item>
         <item>11 + 5 =</item>
         <item>12 + 5 =</item>
@@ -70,18 +53,18 @@
         <item>23 + 5 =</item>
         <item>24 + 5 =</item>
         <item>25 + 5 =</item>
+        <item>26 + 5 =</item>
+        <item>27 + 5 =</item>
+        <item>28 + 5 =</item>
+        <item>29 + 5 =</item>
+        <item>30 + 5 =</item>
+        <item>31 + 5 =</item>
+        <item>32 + 5 =</item>
+        <item>33 + 5 =</item>
+        <item>34 + 5 =</item>
     </string-array>
 
     <string-array name="answers">
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
         <item>15</item>
         <item>16</item>
         <item>17</item>
@@ -98,6 +81,15 @@
         <item>28</item>
         <item>29</item>
         <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
     </string-array>
 
 
