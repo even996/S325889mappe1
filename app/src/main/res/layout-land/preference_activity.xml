@@ -51,7 +51,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:fontFamily="casual"
-            android:layout_marginEnd="220dp"
+            android:layout_marginEnd="255dp"
             android:layout_marginBottom="290dp"
             android:textSize="20dp"
             android:text="@string/preferences_option_two" />
@@ -63,7 +63,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:fontFamily="casual"
-            android:layout_marginEnd="46dp"
+            android:layout_marginEnd="170dp"
             android:layout_marginBottom="290dp"
             android:textSize="20dp"
             android:text="@string/preferences_option_three" />
@@ -75,7 +75,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:fontFamily="casual"
-            android:layout_marginEnd="390dp"
+            android:layout_marginEnd="350dp"
             android:layout_marginBottom="290dp"
             android:text="@string/preferences_option_one"
             android:textSize="20dp" />

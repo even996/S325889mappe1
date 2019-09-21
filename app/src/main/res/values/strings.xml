@@ -30,9 +30,12 @@
     <string name="back_to_highscore">Gå tilbake til resultater</string>
     <string name="resetScore">Vil du slette dne gamle resultatet</string>
     <string name="yes">Ja</string>
-    <string name="winner">Du vant!</string>
+    <string name="winner">Spillet er ferdig</string>
+    <string name="winner_Text">Fortsett til Beste Resultater</string>
+    <string name="quit">Avslutt spill?</string>
+    <string name="quit_message">Spillet blir ikke lagret</string>
     <string name="warning">Advarsel</string>
-    <string name="no">Nei,avbryt</string>
+    <string name="no">Nei</string>
 
 
 

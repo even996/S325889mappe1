@@ -1,14 +1,19 @@
 package com.example.mappe1;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 public class StatisticsAcitivty extends AppCompatActivity {
 
@@ -21,6 +26,7 @@ public class StatisticsAcitivty extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         System.out.println("KJØRER ONCREATE");
+        loadLanguage();
         setContentView(R.layout.statistics_activity);
         prefReturnBtn = findViewById(R.id.returnBtn);
         deleteHighscore = findViewById(R.id.deleteHighscore);
@@ -67,6 +73,27 @@ public class StatisticsAcitivty extends AppCompatActivity {
         outState.putString("returnBtn",prefReturnBtn.getText().toString());
         outState.putString("deleteHighScore",deleteHighscore.getText().toString());
     }
+
+    public void setLanguage(String country){
+        Locale locale = new Locale(country);
+        locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("language", MODE_PRIVATE).edit();
+        editor.putString("lang", country);
+        editor.apply();
+
+    }
+
+    public void loadLanguage(){
+        SharedPreferences prefs = getSharedPreferences("language", Activity.MODE_PRIVATE);
+        String language = prefs.getString("lang", "");
+        setLanguage(language);
+
+    }
+
+
 
 
 

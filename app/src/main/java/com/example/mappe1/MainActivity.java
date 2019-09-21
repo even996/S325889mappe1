@@ -3,12 +3,17 @@ package com.example.mappe1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,21 +22,22 @@ public class MainActivity extends AppCompatActivity {
 
     TextView menuTitle;
     Button startBtn, statisticsBtn, preferenceBtn;
+    public String country;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLanguage();
         setContentView(R.layout.activity_main);
         menuTitle = findViewById(R.id.menu_title);
 
 
-        System.out.println("TEST!");
-
-
-        System.out.println((getIntent().hasExtra(EXTRA_NUMBER)+ "test123"));
         Intent intent = getIntent();
         checked = intent.getIntExtra(PreferenceAcitivty.EXTRA_NUMBER, 5);
+
+        System.out.println(checked);
+        //country = intent.getStringExtra("language");
         startBtn = findViewById(R.id.start_btn);
         statisticsBtn = findViewById(R.id.statistics_btn);
         preferenceBtn = findViewById(R.id.preference_btn);
@@ -73,6 +79,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void setLanguage(String country){
+        Locale locale = new Locale(country);
+        locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("language", MODE_PRIVATE).edit();
+        editor.putString("lang", country);
+        editor.apply();
+
+    }
+
+    public void loadLanguage(){
+        SharedPreferences prefs = getSharedPreferences("language", Activity.MODE_PRIVATE);
+        String language = prefs.getString("lang", "");
+        setLanguage(language);
+
+    }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -87,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 Intent intent = new Intent(this, StartAcitivty.class);
                 intent.putExtra(EXTRA_NUMBER, checked);
+                System.out.println(checked);
                 startActivity(intent);
                 break;
             case 2:

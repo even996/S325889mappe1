@@ -1,6 +1,8 @@
 package com.example.mappe1;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -20,16 +22,19 @@ public class PreferenceAcitivty extends AppCompatActivity {
 
 
     public static final String EXTRA_NUMBER = "com.example.mappe1";
+    public static final String EXTRA_LANGUAGE = "com.example.mappe1";
     public int checked = 5;
 
     public Button prefReturnBtn;
     public ImageButton imageButtonNor, imageButtonGer;
     public CheckBox checkBox1, checkBox2, checkBox3;
     public int languageNumber;
+    public String language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLanguage();
         setContentView(R.layout.preference_activity);
         prefReturnBtn = findViewById(R.id.returnBtn);
         imageButtonNor = findViewById(R.id.imageNor);
@@ -99,24 +104,42 @@ public class PreferenceAcitivty extends AppCompatActivity {
     public void menu(){
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(EXTRA_NUMBER,checked);
+        //intent.putExtra(EXTRA_LANGUAGE, language);
         startActivity(intent);
     }
 
+   
+
     public void setLanguage(String country){
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration cf = res.getConfiguration();
-        cf.setLocale(new Locale(country));
-        res.updateConfiguration(cf,dm);
+        Locale locale = new Locale(country);
+        locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("language", MODE_PRIVATE).edit();
+        editor.putString("lang", country);
+        editor.apply();
+
     }
 
+    public void loadLanguage(){
+        SharedPreferences prefs = getSharedPreferences("language", Activity.MODE_PRIVATE);
+        String language = prefs.getString("lang", "");
+        setLanguage(language);
+
+    }
+
+
+
     public void german(View view){
-        setLanguage("de");
+        language="de";
+        setLanguage(language);
         recreate();
     }
 
     public void norwergian(View view){
-        setLanguage("no");
+        language="no";
+        setLanguage(language);
         recreate();
     }
 

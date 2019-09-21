@@ -30,9 +30,13 @@
     <string name="back_to_highscore">Gehen Sie zurück zu den Ergebnissen</string>
     <string name="resetScore">Möchten Sie das alte Ergebnis löschen?</string>
     <string name="yes">Ja</string>
-    <string name="winner">Du hast gewonnen</string>
+    <string name="winner">Das Spiel ist fertig</string>
     <string name="warning">Warnung</string>
-    <string name="no">Nein, stornieren</string>
+    <string name="no">Nein</string>
+    <string name="winner_Text">Fahren Sie mit den besten Ergebnissen fort</string>
+    <string name="quit">Spiel beenden?</string>
+    <string name="quit_message">Das Spiel wird nicht gespeichert</string>
+
 
 
 

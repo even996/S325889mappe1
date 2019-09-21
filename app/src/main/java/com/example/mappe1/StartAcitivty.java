@@ -122,16 +122,16 @@ public class StartAcitivty  extends AppCompatActivity implements View.OnClickLis
         switch (name_of_activity){
             case "StatisticsActivity":
                 cancelable = false;
-                title = "You've won!";
-                message = "Continue to see highscores";
+                title = getResources().getString(R.string.winner);
+                message = getResources().getString(R.string.winner_Text);
                 positive_button_text = "Ok";
                 break;
             case "MainActivity":
                 cancelable = true;
-                title = "Exit?";
-                message = "Are you sure you want to exit?";
-                positive_button_text = "Yes";
-                negative_button_text = "No";
+                title = getResources().getString(R.string.quit);
+                message = getResources().getString(R.string.quit_message);
+                positive_button_text = getResources().getString(R.string.yes);
+                negative_button_text = getResources().getString(R.string.no);
                 negative_button = true;
                 break;
                 default:
